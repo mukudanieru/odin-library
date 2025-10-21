@@ -13,19 +13,19 @@
         <!-- Header -->
         <header class="page-header">
             <div class="header-content">
-                <h1 id="title">Library</h1>
+                <h1 class="header-title">Library</h1>
             </div>
         </header>
 
         <!-- Main -->
         <main class="page-main">
-            <div id="actions">
-                <button id="add-book">Add Book</button>
+            <div class="actions">
+                <button class="btn" id="add-book">Add Book</button>
             </div>
 
-            <div id="list">
-                <h2 id="empty-list-title">Your list is empty.</h2>
-                <p id="empty-list-message">
+            <div class="list">
+                <h2 class="empty-list-title">Your list is empty.</h2>
+                <p class="empty-list-message">
                     Add books to your list by clicking add books.
                 </p>
             </div>
@@ -52,15 +52,55 @@
                         &times;
                     </button>
                 </header>
+
                 <main class="modal-main">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus ea omnis assumenda tempora, sit rem laborum ut
-                    autem et, quibusdam consequuntur reprehenderit quis fugit
-                    necessitatibus nesciunt sapiente est voluptate sed. Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Quam
-                    neque numquam blanditiis magnam laudantium fugit dolore cum
-                    eum. Beatae perspiciatis autem facilis eaque dolor facere
-                    consequatur, enim rerum quo harum.
+                    <form class="modal-form" id="book-submission">
+                        <div class="field">
+                            <label for="title">Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                id="title"
+                                required
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label for="author">Author</label>
+                            <input
+                                type="text"
+                                name="author"
+                                id="author"
+                                required
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label for="pages">Pages</label>
+                            <input
+                                type="number"
+                                name="pages"
+                                id="pages"
+                                required
+                            />
+                        </div>
+
+                        <div class="boolean-field">
+                            <input
+                                type="checkbox"
+                                id="has-read"
+                                name="has-read"
+                                value="1"
+                            />
+                            <label class="label-boolean" for="has-read"
+                                >Have you read this book?</label
+                            >
+                        </div>
+
+                        <button class="btn" id="submit-book" type="submit">
+                            Submit
+                        </button>
+                    </form>
                 </main>
             </div>
         </div>
