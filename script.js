@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(id, title, author, pages, hasRead) {
     if (!new.target) {
@@ -53,6 +53,10 @@ form.addEventListener("submit", (event) => {
         library.classList.remove("empty");
         document.querySelector(".empty-list-title").remove();
         document.querySelector(".empty-list-message").remove();
+    } else {
+        document
+            .querySelectorAll(".book")
+            .forEach((element) => element.remove());
     }
 
     myLibrary.push(newBook);
@@ -158,6 +162,12 @@ function newBookElement(bookObject) {
 
     const readBtn = document.createElement("div");
     readBtn.classList.add("book-btn");
+    readBtn.classList.add("read-btn");
+
+    if (bookObject.hasRead) {
+        readBtn.classList.add("has-read");
+    }
+
     readBtn.id = "read-btn";
 
     const readBtnSVG = `
@@ -181,6 +191,7 @@ function newBookElement(bookObject) {
 
     const removeBtn = document.createElement("div");
     removeBtn.classList.add("book-btn");
+    removeBtn.classList.add("remove-btn");
     removeBtn.id = "remove-btn";
 
     const removeBtnSVG = `
@@ -207,3 +218,52 @@ function newBookElement(bookObject) {
 
     return book;
 }
+
+// Read and Remove interaction
+const listFromDOM = document.querySelector("#library");
+listFromDOM.addEventListener("click", (event) => {
+    const bookId = event.target.closest(".book").id;
+
+    const readBtn = event.target.closest("#read-btn");
+    if (readBtn) {
+        myLibrary.forEach((currentBook) => {
+            if (currentBook.id === bookId) {
+                if (currentBook.hasRead) {
+                    currentBook.hasRead = false;
+                } else {
+                    currentBook.hasRead = true;
+                }
+            }
+        });
+    }
+
+    const removeBtn = event.target.closest("#remove-btn");
+    if (removeBtn) {
+        myLibrary = myLibrary.filter(
+            (currentBook) => currentBook.id !== bookId
+        );
+    }
+
+    document.querySelectorAll(".book").forEach((element) => element.remove());
+    myLibrary.forEach((currentBook) => {
+        library.appendChild(newBookElement(currentBook));
+    });
+
+    if (myLibrary.length === 0) {
+        const library = document.querySelector("#library");
+        library.classList.add("empty");
+
+        const emptyTitle = document.createElement("h2");
+        emptyTitle.classList.add("empty-list-title");
+        emptyTitle.innerHTML = "Looks like your library is empty!";
+
+        library.appendChild(emptyTitle);
+
+        const emptyMessage = document.createElement("p");
+        emptyMessage.classList.add("empty-list-message");
+        emptyMessage.innerHTML =
+            "Start building your library by adding books now.";
+
+        library.appendChild(emptyMessage);
+    }
+});

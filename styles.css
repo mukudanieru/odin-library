@@ -196,6 +196,27 @@ body {
     height: 1.4rem;
 }
 
+.read-btn {
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.has-read {
+    color: var(--accent-color) !important;
+}
+
+.read-btn:hover {
+    color: var(--accent-color);
+}
+
+.remove-btn {
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    color: var(--remove-color);
+}
+
 .list.empty {
     height: 400px;
 
