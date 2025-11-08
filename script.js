@@ -1,24 +1,42 @@
 let myLibrary = [];
 
-function Book(id, title, author, pages, hasRead) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
+// function Book(id, title, author, pages, hasRead) {
+//     if (!new.target) {
+//         throw Error("You must use the 'new' operator to call the constructor");
+//     }
+
+//     this.id = id;
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.hasRead = hasRead;
+// }
+
+// Book.prototype.log = function () {
+//     console.log(`Book ID: ${this.id}`);
+//     console.log(`Title: ${this.title}`);
+//     console.log(`Author: ${this.author}`);
+//     console.log(`Pages: ${this.pages}`);
+//     console.log(`Read: ${this.hasRead ? "Yes" : "No"}`);
+// };
+
+class Book {
+    constructor(id, title, author, pages, hasRead) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
     }
 
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = hasRead;
+    log() {
+        console.log(`Book ID: ${this.id}`);
+        console.log(`Title: ${this.title}`);
+        console.log(`Author: ${this.author}`);
+        console.log(`Pages: ${this.pages}`);
+        console.log(`Read: ${this.hasRead ? "Yes" : "No"}`);
+    }
 }
-
-Book.prototype.log = function () {
-    console.log(`Book ID: ${this.id}`);
-    console.log(`Title: ${this.title}`);
-    console.log(`Author: ${this.author}`);
-    console.log(`Pages: ${this.pages}`);
-    console.log(`Read: ${this.hasRead ? "Yes" : "No"}`);
-};
 
 // Modal interaction
 const addBookButton = document.querySelector("#add-book");
